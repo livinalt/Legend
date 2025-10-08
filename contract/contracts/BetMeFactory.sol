@@ -13,7 +13,7 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./BetMe.sol";
+import "./BetEscrow.sol";
 
 contract BetFactory is Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;
