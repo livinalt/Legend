@@ -5,8 +5,24 @@ const { ethers, network } = require("hardhat");
 describe("BetEscrow", async function () {
   const { viem } = await ethers.provider.connect();
   const publicClient = await viem.getPublicClient();
-  let deployer: any, creator: any, opponent: any, feeRecipient: any;
-  let betFactory: any, erc20Token: any, betEscrow: any;
+
+  interface Signer {
+    address: string;
+    }
+
+  interface Contract {
+    address: string;
+    abi: any;
+    write: Record<string, Function>;
+    read: Record<string, Function>;
+  }
+
+  let deployer: Signer, creator: Signer, opponent: Signer, feeRecipient: Signer;
+  interface BetFactoryContract extends Contract {}
+  interface ERC20TokenContract extends Contract {}
+  interface BetEscrowContract extends Contract {}
+
+  let betFactory: BetFactoryContract, erc20Token: ERC20TokenContract, betEscrow: BetEscrowContract;
   const stake = BigInt(1e18); // 1 ETH or 1e18 tokens
   const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // 1 hour from now
   const category = ethers.utils.formatBytes32String("sports");
